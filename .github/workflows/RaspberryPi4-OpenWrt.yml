@@ -151,17 +151,17 @@ jobs:
         fail-if-no-assets: false
         fail-if-no-release: false
 
-    - name: Upload Toolchain Image
-      if: steps.hash.outputs.REBUILD_TOOLCHAIN == 'true'
-      uses: ncipollo/release-action@v1
-      with:
-        name: Toolchain-Image
-        allowUpdates: true
-        replacesArtifacts: true
-        tag: ${{ env.TOOLCHAIN_TAG }}
-        token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: output/*
-        body: OpenWrt 工具链镜像文件
+    # - name: Upload Toolchain Image
+    #   if: steps.hash.outputs.REBUILD_TOOLCHAIN == 'true'
+    #   uses: ncipollo/release-action@v1
+    #   with:
+    #     name: Toolchain-Image
+    #     allowUpdates: true
+    #     replacesArtifacts: true
+    #     tag: ${{ env.TOOLCHAIN_TAG }}
+    #     token: ${{ secrets.GITHUB_TOKEN }}
+    #     artifacts: output/*
+    #     body: OpenWrt 工具链镜像文件
 
   Build:
     needs: [Toolchain]
