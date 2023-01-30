@@ -23,7 +23,7 @@ env:
   CLASH_KERNEL: armv8
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: RaspberryPi4
+  FIRMWARE_TAG: RaspberryPi4_MINI
   TZ: Asia/Shanghai
 
 jobs:
