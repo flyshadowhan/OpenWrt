@@ -145,23 +145,23 @@ jobs:
       if: steps.hash.outputs.REBUILD_TOOLCHAIN == 'true'
       uses: mknejp/delete-release-assets@v1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.TOKEN }}
         tag: ${{ env.TOOLCHAIN_TAG }}
         assets: '${{ env.TOOLCHAIN_IMAGE }}.*'
         fail-if-no-assets: false
         fail-if-no-release: false
 
-    # - name: Upload Toolchain Image
-    #   if: steps.hash.outputs.REBUILD_TOOLCHAIN == 'true'
-    #   uses: ncipollo/release-action@v1
-    #   with:
-    #     name: Toolchain-Image
-    #     allowUpdates: true
-    #     replacesArtifacts: true
-    #     tag: ${{ env.TOOLCHAIN_TAG }}
-    #     token: ${{ secrets.GITHUB_TOKEN }}
-    #     artifacts: output/*
-    #     body: OpenWrt 工具链镜像文件
+    - name: Upload Toolchain Image
+      if: steps.hash.outputs.REBUILD_TOOLCHAIN == 'true'
+      uses: ncipollo/release-action@v1
+      with:
+        name: Toolchain-Image
+        allowUpdates: true
+        replacesArtifacts: true
+        tag: ${{ env.TOOLCHAIN_TAG }}
+        token: ${{ secrets.TOKEN }}
+        artifacts: output/*
+        body: OpenWrt 工具链镜像文件
 
   Build:
     needs: [Toolchain]
@@ -343,7 +343,7 @@ jobs:
         allowUpdates: true
         replacesArtifacts: true
         tag: ${{ env.FIRMWARE_TAG }}
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
           **This is OpenWrt Firmware for ${{ env.FIRMWARE_TAG }}**
