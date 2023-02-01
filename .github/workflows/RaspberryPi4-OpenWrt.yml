@@ -15,7 +15,8 @@ on:
 
 env:
   SOURCE_URL: https://github.com/coolsnowwolf/lede
-  SOURCE_BRANCH: master
+  # SOURCE_BRANCH: master
+  SOURCE_BRANCH: 20220716
   CONFIG_FILE: configs/rpi4.config
   EXTRA_CONFIG: configs/extra.config
   DIY_SCRIPT: diy-mini.sh
