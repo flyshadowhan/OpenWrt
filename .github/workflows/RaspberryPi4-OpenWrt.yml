@@ -254,7 +254,7 @@ jobs:
         cd $OPENWRT_PATH
         echo '$OPENWRT_PATH'
         pwd
-        git pull
+        git reset --hard $SOURCE_BRANCH
 
     - name: Install Feeds
       run: |
