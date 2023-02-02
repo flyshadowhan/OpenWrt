@@ -242,8 +242,6 @@ jobs:
       run: |
         mkdir -p workspace
         cd workspace
-        echo 'workspace'
-        pwd
         for i in {0..9}
         do
           curl -fsL https://github.com/$GITHUB_REPOSITORY/releases/download/$TOOLCHAIN_TAG/$TOOLCHAIN_IMAGE.img.0$i >> $TOOLCHAIN_IMAGE.img || break
@@ -252,8 +250,6 @@ jobs:
         sudo mount -o loop $TOOLCHAIN_IMAGE.img openwrt-ro
         sudo mount -t overlay overlay -o lowerdir=openwrt-ro,upperdir=overlay,workdir=workdir openwrt
         cd $OPENWRT_PATH
-        echo '$OPENWRT_PATH'
-        pwd
         git reset --hard $SOURCE_BRANCH
 
     - name: Install Feeds
@@ -272,7 +268,7 @@ jobs:
         cd $OPENWRT_PATH
         $GITHUB_WORKSPACE/$DIY_SCRIPT
         $GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
-        $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
+        # $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
 
     - name: Download DL Package
       run: |
@@ -352,7 +348,6 @@ jobs:
         artifacts: ${{ env.FIRMWARE_PATH }}/*
         body: |
           **This is OpenWrt Firmware for ${{ env.FIRMWARE_TAG }}**
-          * 这是 ${{ env.FIRMWARE_TAG }} 使用的 OpenWrt 固件
+          * 这是 raspberry pi4 使用的 OpenWrt 精简版固件
           默认 IP：192.168.1.1 默认密码：password
-          当前使用版本:【编译前的最后一次[➦主源码](https://github.com/coolsnowwolf/lede)更新记录】
-          ${{ env.VERSION_INFO }}
+          当前使用版本:【[➦主源码](${{ env.SOURCE_URL}})】分支:${{ env.SOURCE_BRANCH}}
